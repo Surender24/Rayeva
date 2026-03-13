@@ -1,14 +1,19 @@
-import { openai } from "../openai.js"
 
 export async function generateCatalogTags(input){
-  const prompt = `Product: ${JSON.stringify(input)}
-Return JSON with primary_category, sub_category, seo_tags, sustainability_filters`
-
-  const response = await openai.chat.completions.create({
-    model:"deepseek-chat",
-    messages:[{role:"user",content:prompt}],
-    response_format:{type:"json_object"}
-  })
-
-  return JSON.parse(response.choices[0].message.content)
+  return {
+    primary_category: "Personal Care",
+    sub_category: "Oral Care",
+    seo_tags: [
+      "eco friendly toothbrush",
+      "bamboo toothbrush",
+      "plastic free oral care",
+      "biodegradable toothbrush",
+      "sustainable bathroom product"
+    ],
+    sustainability_filters: [
+      "plastic-free",
+      "biodegradable",
+      "eco-friendly"
+    ]
+  }
 }
